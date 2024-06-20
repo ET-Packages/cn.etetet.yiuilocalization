@@ -93,9 +93,9 @@ namespace I2.Loc
             var sbTrans = new StringBuilder();
             var sbTerms = new StringBuilder();
             sbTrans.AppendLine( "using UnityEngine;" );
-            sbTrans.AppendLine( "using ET;" );
+            sbTrans.AppendLine( "using I2.Loc;" );
             sbTrans.AppendLine();
-            sbTrans.AppendLine( "namespace I2.Loc" );
+            sbTrans.AppendLine( "namespace ET.Client" );
             sbTrans.AppendLine( "{" );
             sbTrans.AppendLine( $"	public static class {I2LocalizeCS}" );
             sbTrans.AppendLine( "	{" );
