@@ -13,7 +13,7 @@ namespace I2.Loc
     [YIUISingleton(1100)]
     public class I2LocalizeMgr : YIUIMonoSingleton<I2LocalizeMgr>, IResourceManager_Bundles
     {
-        [SerializeField]
+        [NonSerialized]
         [ReadOnly]
         private LanguageSource m_LanguageSource;
 
@@ -21,19 +21,22 @@ namespace I2.Loc
 
         private List<string> m_AllLanguage = new List<string>();
 
-        [SerializeField]
-        private bool m_UseRuntimeModule = false; //模拟平台运行时 编辑器资源不加载
+        //继承Mono单例是不能在预制上修改参数的 如果你想模拟只能修改此值
+        private const bool m_UseRuntimeModule = false; //模拟平台运行时
 
-        [SerializeField]
+        [ReadOnly]
+        [NonSerialized]
+        [ShowInInspector]
         [ValueDropdown("GetAllLanguageKeys")]
         [DisableIf("OnValueChangeIf")]
         private string m_DefaultLanguage = "Chinese";
 
+        [NonSerialized]
         [ShowInInspector]
         [EnableIf("OnValueChangeIf")]
         [ValueDropdown("GetAllLanguageKeys")]
         [OnValueChanged("OnValueChangedCurrentLanguage")]
-        private string m_CurrentLanguage;
+        private string m_CurrentLanguage; //模拟平台运行时不能在UI上切换语言只能代码切换
 
         #region ResourceManager_Bundles
 
@@ -128,8 +131,8 @@ namespace I2.Loc
                 await LoadLanguage(m_DefaultLanguage, true);
             }
             #else
-                m_SourceData.Awake();
-                await LoadLanguage(m_DefaultLanguage, true);
+            m_SourceData.Awake();
+            await LoadLanguage(m_DefaultLanguage, true);
             #endif
 
             return true;
