@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace I2.Loc
 {
@@ -270,22 +269,21 @@ namespace I2.Loc
             
 	        Selection.activeObject = globalSourcesAsset;
         }
-        
+
         private static LanguageSourceAsset CreateLanguageSources()
 		{
-
 			var globalSourcesAsset = AssetDatabase.LoadAssetAtPath<LanguageSourceAsset>(I2LocalizeHelper.I2GlobalSourcesEditorPath);
 			if (globalSourcesAsset != null)
 			{
 				return globalSourcesAsset;
 			}
-			
+
             var asset = ScriptableObject.CreateInstance<LanguageSourceAsset>();
 
-            var assetFolder = Application.dataPath + I2LocalizeHelper.I2GlobalSourcesEditorPath;
+            var assetFolder = Application.dataPath + "/../" + I2LocalizeHelper.I2GlobalSourcesEditorFile;
             if (!Directory.Exists(assetFolder))
 	            Directory.CreateDirectory(assetFolder);
-            
+
             AssetDatabase.CreateAsset(asset, I2LocalizeHelper.I2GlobalSourcesEditorPath);
             AssetDatabase.SaveAssets();
 		    AssetDatabase.Refresh();
