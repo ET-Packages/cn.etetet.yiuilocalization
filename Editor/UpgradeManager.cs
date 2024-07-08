@@ -260,16 +260,13 @@ namespace I2.Loc
         //2 平台时会自行管理  根据需求动态加载
         //LocalizationManager.GlobalSources 不能有数据 请设置为 {}
 
-        private const string I2GlobalSourcesEditorFolderPath = "Assets/Editor/I2Localization";
-        private const string I2GlobalSourcesEditorPath = "Assets/Editor/I2Localization/I2Languages.asset";
-        
         [MenuItem("Tools/I2 Localization/Open I2Languages.asset", false, 0)]
         public static void OpenGlobalSource()
         {
 	        var globalSourcesAsset = CreateLanguageSources();
 
 	        if (globalSourcesAsset == null)
-		        Debug.LogError($"没有找到数据源 {I2GlobalSourcesEditorPath}");
+		        Debug.LogError($"没有找到数据源 {I2LocalizeHelper.I2GlobalSourcesEditorPath}");
             
 	        Selection.activeObject = globalSourcesAsset;
         }
@@ -277,7 +274,7 @@ namespace I2.Loc
         private static LanguageSourceAsset CreateLanguageSources()
 		{
 
-			var globalSourcesAsset = AssetDatabase.LoadAssetAtPath<LanguageSourceAsset>(I2GlobalSourcesEditorPath);
+			var globalSourcesAsset = AssetDatabase.LoadAssetAtPath<LanguageSourceAsset>(I2LocalizeHelper.I2GlobalSourcesEditorPath);
 			if (globalSourcesAsset != null)
 			{
 				return globalSourcesAsset;
@@ -285,11 +282,11 @@ namespace I2.Loc
 			
             var asset = ScriptableObject.CreateInstance<LanguageSourceAsset>();
 
-            var assetFolder = Application.dataPath + I2GlobalSourcesEditorFolderPath.Replace("Assets", "");
+            var assetFolder = Application.dataPath + I2LocalizeHelper.I2GlobalSourcesEditorPath;
             if (!Directory.Exists(assetFolder))
 	            Directory.CreateDirectory(assetFolder);
             
-            AssetDatabase.CreateAsset(asset, I2GlobalSourcesEditorPath);
+            AssetDatabase.CreateAsset(asset, I2LocalizeHelper.I2GlobalSourcesEditorPath);
             AssetDatabase.SaveAssets();
 		    AssetDatabase.Refresh();
 

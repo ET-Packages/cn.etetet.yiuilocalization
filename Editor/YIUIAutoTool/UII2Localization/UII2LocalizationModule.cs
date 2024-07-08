@@ -23,13 +23,13 @@ namespace YIUIFramework.Editor
         [FolderPath]
         [ShowInInspector]
         [ReadOnly]
-        public const string UII2SourceResPath = "Assets/Editor/I2Localization"; //这是编辑器下的数据 平台运行时 是不需要的
+        public const string UII2SourceResPath = "Packages/cn.etetet.yiuilocalization/Assets/Editor/I2Localization"; //这是编辑器下的数据 平台运行时 是不需要的
 
         [LabelText("指定数据保存路径")]
         [FolderPath]
         [ShowInInspector]
         [ReadOnly]
-        public const string UII2TargetLanguageResPath = "Assets/GameRes/I2Localization"; //运行时的资源是拆分的 根据需求加载
+        public const string UII2TargetLanguageResPath = "Packages/cn.etetet.yiuilocalization/Assets/GameRes/I2Localization"; //运行时的资源是拆分的 根据需求加载
 
         [Button("打开多语言数据", 50)]
         [GUIColor(0.4f, 0.8f, 1)]
