@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace YIUIFramework.Editor
 {
-    [YIUIAutoMenu("多语言")]
+    [YIUIAutoMenu("多语言", 100100)]
     public class UII2LocalizationModule : BaseYIUIToolModule
     {
         private LanguageSourceData m_LanguageSourceData;
