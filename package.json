@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "cn.etetet.yiuilocalization",
   "displayName": "ET.YIUI.Localization",
   "version": "0.0.10",
@@ -16,8 +16,7 @@
   "dependencies": {
     "cn.etetet.yiuiframework": "0.0.10"
   },
-  "publishConfig": 
-  { 
-    "registry": "https://npm.pkg.github.com/@ET-Packages" 
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@ET-Packages"
   }
 }
