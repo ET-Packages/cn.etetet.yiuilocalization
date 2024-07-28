@@ -9,6 +9,9 @@ using Object = UnityEngine.Object;
 
 namespace I2.Loc
 {
+    /// <summary>
+    /// 文档: https://lib9kmxvq7k.feishu.cn/wiki/ZOKxwi5XsijdX8kPU9McSxs1nxd
+    /// </summary>
     [RequireComponent(typeof(LanguageSource))]
     [YIUISingleton(1100)]
     public class I2LocalizeMgr : YIUIMonoSingleton<I2LocalizeMgr>, IResourceManager_Bundles

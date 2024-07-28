@@ -2,6 +2,9 @@
 
 namespace I2.Loc
 {
+    /// <summary>
+    /// 文档: https://lib9kmxvq7k.feishu.cn/wiki/ZOKxwi5XsijdX8kPU9McSxs1nxd
+    /// </summary>
     public static class I2LocalizeHelper
     {
         #if UNITY_EDITOR

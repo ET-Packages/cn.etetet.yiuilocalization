@@ -12,6 +12,13 @@ namespace YIUIFramework.Editor
     [YIUIAutoMenu("多语言", 100100)]
     public class UII2LocalizationModule : BaseYIUIToolModule
     {
+        [Button("文档", 30, Icon = SdfIconType.Link45deg, IconAlignment = IconAlignment.LeftOfText)]
+        [PropertyOrder(-99999)]
+        public void OpenDocument()
+        {
+            Application.OpenURL("https://lib9kmxvq7k.feishu.cn/wiki/ZOKxwi5XsijdX8kPU9McSxs1nxd");
+        }
+
         private LanguageSourceData m_LanguageSourceData;
 
         [LabelText("全数据名称")]
