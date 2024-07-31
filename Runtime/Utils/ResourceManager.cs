@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using YIUIFramework;
 #if UNITY_5_4_OR_NEWER
 using UnityEngine.SceneManagement;
+using Scene = UnityEngine.SceneManagement.Scene;
 #endif
+using Object = UnityEngine.Object;
+using ET;
 
 namespace I2.Loc
 {
