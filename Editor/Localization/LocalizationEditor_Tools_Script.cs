@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
-using UnityEngineInternal;
 using YIUIFramework;
 
 namespace I2.Loc
@@ -137,7 +136,7 @@ namespace I2.Loc
                 { }
             }*/
 			
-			var path = $"{string.Format(YIUIConst.UIETComponentGenPath, YIUIConst.UIETCreatePackageName)}/I2Localization";
+			var path = $"{string.Format(YIUIConstHelper.Const.UIETComponentGenPath, YIUIConstHelper.Const.UIETCreatePackageName)}/I2Localization";
 			if (!Directory.Exists(path))
 				Directory.CreateDirectory(path);
 			
