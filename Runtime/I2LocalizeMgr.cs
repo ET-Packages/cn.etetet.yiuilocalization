@@ -25,14 +25,14 @@ namespace I2.Loc
         private List<string> m_AllLanguage = new List<string>();
 
         //继承Mono单例是不能在预制上修改参数的 如果你想模拟只能修改此值
-        private static bool m_UseRuntimeModule = false; //模拟平台运行时
+        private bool m_UseRuntimeModule = YIUIConstHelper.Const.I2UseRuntimeModule; //模拟平台运行时
 
         [ReadOnly]
         [NonSerialized]
         [ShowInInspector]
         [ValueDropdown("GetAllLanguageKeys")]
         [DisableIf("OnValueChangeIf")]
-        private string m_DefaultLanguage = "Chinese";
+        private string m_DefaultLanguage = YIUIConstHelper.Const.I2DefaultLanguage;
 
         [NonSerialized]
         [ShowInInspector]

@@ -25,6 +25,14 @@ MonoBehaviour:
       - "\u4E2D\u6587"
       Flags: 0000
       Languages_Touch: []
+    - Term: TestFormat
+      TermType: 0
+      Description: 
+      Languages:
+      - EnglishFormat{0}
+      - "\u4E2D\u6587\u586B\u5145{0}"
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
