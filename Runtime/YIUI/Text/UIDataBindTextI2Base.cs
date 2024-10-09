@@ -73,7 +73,7 @@ namespace YIUIFramework
             }
             else
             {
-                var i2Context = LocalizationManager.GetTranslation(m_I2Key, false);
+                var i2Context = LocalizationManager.GetTranslation(m_I2Key);
                 if (string.IsNullOrEmpty(i2Context))
                 {
                     Logger.LogErrorContext(this, $"{this.gameObject.name} 未找到多语言资源:[{m_I2Key}]");
