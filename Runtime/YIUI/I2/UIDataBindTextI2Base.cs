@@ -9,7 +9,7 @@ namespace YIUIFramework
     /// <summary>
     /// 多语言文本数据修改 基类
     /// </summary>
-    public abstract class UIDataBindTextI2Base : UIDataBindSelectBase
+    public abstract class UIDataBindTextI2Base: UIDataBindSelectBase
     {
         [SerializeField]
         [Delayed] //延迟序列化
@@ -73,10 +73,9 @@ namespace YIUIFramework
             }
             else
             {
-                var i2Context = LocalizationManager.GetTranslation(m_I2Key);
-                if (string.IsNullOrEmpty(i2Context))
+                var i2Content = GetI2Content(m_I2Key);
+                if (string.IsNullOrEmpty(i2Content))
                 {
-                    Logger.LogErrorContext(this, $"{this.gameObject.name} 未找到多语言资源:[{m_I2Key}]");
                     SetText("");
                     BaseSetEnabled(false);
                     return;
@@ -98,14 +97,39 @@ namespace YIUIFramework
 
                 try
                 {
-                    SetText(string.Format(i2Context, m_ParamList));
+                    SetText(string.Format(i2Content, m_ParamList));
                 }
                 catch (FormatException exp)
                 {
-                    Logger.LogError($"{name} 字符串拼接Format 出错请检查是否有拼写错误  {i2Context}");
+                    Logger.LogError($"{name} 字符串拼接Format 出错请检查是否有拼写错误  {i2Content}");
                     Logger.LogError(exp.Message, this);
                 }
             }
+        }
+
+        [NonSerialized]
+        private string m_LastI2Key;
+
+        [NonSerialized]
+        private string m_I2Content;
+
+        private string GetI2Content(string key)
+        {
+            //TODO 无法实施切换语言
+            if (key != m_LastI2Key)
+            {
+                m_I2Content = LocalizationManager.GetTranslation(m_I2Key);
+                if (string.IsNullOrEmpty(m_I2Content))
+                {
+                    Logger.LogErrorContext(this, $"{this.gameObject.name} 未找到多语言资源:[{m_I2Key}]");
+                }
+                else
+                {
+                    m_LastI2Key = key;
+                }
+            }
+
+            return m_I2Content;
         }
 
         private string GetDataToString(UIDataSelect dataSelect)
