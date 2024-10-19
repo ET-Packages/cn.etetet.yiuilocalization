@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using ET;
+using ET.Client;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using YIUIFramework;
@@ -40,6 +41,8 @@ namespace I2.Loc
         [ValueDropdown("GetAllLanguageKeys")]
         [OnValueChanged("OnValueChangedCurrentLanguage")]
         private string m_CurrentLanguage; //模拟平台运行时不能在UI上切换语言只能代码切换
+
+        public string CurrentLanguage => m_CurrentLanguage;
 
         #region ResourceManager_Bundles
 
@@ -243,6 +246,10 @@ namespace I2.Loc
             Debug.Log($"设置当前语言 = {language}");
             LocalizationManager.CurrentLanguage = language;
             m_CurrentLanguage                   = language;
+            ET.EventSystem.Instance?.YIUIInvokeSync(new EventView_ChangeLanguage
+            {
+                Language = language
+            });
             return true;
         }
 

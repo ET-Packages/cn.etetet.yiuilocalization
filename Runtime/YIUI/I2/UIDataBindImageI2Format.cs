@@ -93,34 +93,47 @@ namespace YIUIFramework
         {
             var dataValue = dataSelect?.Data?.DataValue;
             if (dataValue == null) return "";
-
-            if (string.IsNullOrEmpty(m_I2Key)) return dataValue.GetValueToString();
-
             var i2Content = GetI2Content(m_I2Key);
             if (string.IsNullOrEmpty(i2Content))
             {
-                return dataValue.GetValueToString();
+                return "";
             }
+
+            var dataString = "";
 
             try
             {
                 switch (dataValue.UIBindDataType)
                 {
                     case EUIBindDataType.Int:
-                        return string.Format(i2Content, dataValue.GetValue<int>());
+                        var intValue = dataValue.GetValue<int>();
+                        dataString = intValue < 0 ? "" : intValue.ToString();
+                        break;
                     case EUIBindDataType.String:
-                        return string.Format(i2Content, dataValue.GetValue<string>());
+                        dataString = dataValue.GetValue<string>();
+                        break;
                     default:
-                        return string.Format(i2Content, dataValue.GetValueToString());
+                        Logger.LogError($"{name} 不支持此类型 {dataValue.UIBindDataType}", this);
+                        break;
+                }
+
+                if (string.IsNullOrEmpty(dataString))
+                {
+                    return "";
+                }
+
+                if (!string.IsNullOrEmpty(i2Content))
+                {
+                    return string.Format(i2Content, dataString);
                 }
             }
             catch (FormatException exp)
             {
-                Logger.LogError($"{name} 字符串拼接Format 出错请检查是否有拼写错误  {i2Content}");
+                Logger.LogError($"{name} 字符串拼接Format 出错请检查是否有拼写错误  {i2Content} , {dataString}");
                 Logger.LogError(exp.Message, this);
             }
 
-            return dataValue.GetValueToString();
+            return "";
         }
 
         [NonSerialized]
