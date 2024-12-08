@@ -724,7 +724,11 @@ namespace I2.Loc
 		{
             if (s_RecycledEditor==null)
             {
-                FieldInfo info = typeof(EditorGUI).GetField("s_RecycledEditor", BindingFlags.NonPublic | BindingFlags.Static);
+	            #if UNITY_6000_0_OR_NEWER
+				var info = typeof(EditorGUI).GetProperty("s_RecycledEditor", BindingFlags.NonPublic | BindingFlags.Static);
+	            #else
+	            var info = typeof(EditorGUI).GetField("s_RecycledEditor", BindingFlags.NonPublic | BindingFlags.Static);
+	            #endif
                 s_RecycledEditor = info.GetValue(null);
             }
 
