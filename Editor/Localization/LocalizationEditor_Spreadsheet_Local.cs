@@ -328,8 +328,9 @@ namespace I2.Loc
 		{
             LanguageSourceData source = GetSourceData();
 
-            string CSVstring = source.Export_CSV(null, Separator, mProp_Spreadsheet_SpecializationAsRows.boolValue);
-			File.WriteAllText (FileName, CSVstring, encoding);
+            string       CSVstring = source.Export_CSV(null, Separator, mProp_Spreadsheet_SpecializationAsRows.boolValue);
+            var utf8  = new UTF8Encoding(false);
+			File.WriteAllText (FileName, CSVstring, utf8);
 		}
 	}
 }

@@ -90,7 +90,8 @@ namespace I2.Loc
 				{
 					Text = reader.ReadToEnd();
 				}*/
-				using (var reader = new StreamReader(Path, encoding ))
+				var utf8  = new UTF8Encoding(false);
+				using (var reader = new StreamReader(Path, utf8 ))
 					Text = reader.ReadToEnd();
 			#endif
 

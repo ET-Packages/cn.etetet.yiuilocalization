@@ -84,7 +84,8 @@ namespace YIUIFramework.Editor
             try
             {
                 var content = Export_CSV(null);
-                File.WriteAllText(path, content, Encoding.UTF8);
+                var utf8    = new UTF8Encoding(false);
+                File.WriteAllText(path, content, utf8);
             }
             catch (Exception e)
             {
@@ -267,7 +268,8 @@ namespace YIUIFramework.Editor
 
             try
             {
-                var content = LocalizationReader.ReadCSVfile(path, Encoding.UTF8);
+	            var utf8  = new UTF8Encoding(false);
+                var content = LocalizationReader.ReadCSVfile(path, utf8);
                 var sError =
                         m_LanguageSourceData.Import_CSV(string.Empty, content, eSpreadsheetUpdateMode.Replace, ',');
                 if (!string.IsNullOrEmpty(sError))
