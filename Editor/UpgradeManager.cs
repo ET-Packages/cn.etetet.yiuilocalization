@@ -270,7 +270,7 @@ namespace I2.Loc
 	        Selection.activeObject = globalSourcesAsset;
         }
 
-        private static LanguageSourceAsset CreateLanguageSources()
+        public static LanguageSourceAsset CreateLanguageSources()
 		{
 			var globalSourcesAsset = AssetDatabase.LoadAssetAtPath<LanguageSourceAsset>(I2LocalizeHelper.I2GlobalSourcesEditorPath);
 			if (globalSourcesAsset != null)
