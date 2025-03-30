@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
 
 namespace I2.Loc
@@ -111,8 +112,8 @@ namespace I2.Loc
 
 		static void EnablePluginsOnPlatform( BuildTargetGroup Platform )
 		{
-			string Settings = PlayerSettings.GetScriptingDefineSymbolsForGroup(Platform );
-			
+			string Settings = PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.FromBuildTargetGroup(Platform) );
+
 			bool HasChanged = false;
 			List<string> symbols = new List<string>( Settings.Split(';'));
 			
@@ -132,7 +133,7 @@ namespace I2.Loc
 						if (i>0) Settings += ";";
 						Settings += symbols[i];
 					}
-					PlayerSettings.SetScriptingDefineSymbolsForGroup(Platform, Settings );
+					PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.FromBuildTargetGroup(Platform), Settings);
 				}
 				catch (Exception)
 				{
