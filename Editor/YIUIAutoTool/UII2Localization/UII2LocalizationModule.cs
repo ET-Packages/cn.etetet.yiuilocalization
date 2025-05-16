@@ -268,8 +268,8 @@ namespace YIUIFramework.Editor
 
             try
             {
-	            var utf8  = new UTF8Encoding(false);
-                var content = LocalizationReader.ReadCSVfile(path, utf8);
+	            var encoding  = Encoding.GetEncoding("gb2312"); // new UTF8Encoding(false);
+                var content = LocalizationReader.ReadCSVfile(path, encoding);
                 var sError = m_LanguageSourceData.Import_CSV(string.Empty, content, eSpreadsheetUpdateMode.Replace, ',');
                 if (!string.IsNullOrEmpty(sError))
                     UnityTipsHelper.ShowError($"导入全数据时发生错误 请检查 {sError} {path}");
@@ -282,7 +282,7 @@ namespace YIUIFramework.Editor
                     else
                     {
                         Selection.activeObject = globalSourcesAsset;
-                        EditorUtility.SetDirty(globalSourcesAsset);
+                        EditorUtility.SetDirty(globalSourcesAsset); 
                     }
                 }
             }
