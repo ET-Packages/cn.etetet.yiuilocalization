@@ -185,7 +185,7 @@ namespace YIUIFramework
 
         private async ETTask ChangeSprite(string resName)
         {
-            using var coroutineLock = await EventSystem.Instance?.YIUIInvokeAsync<YIUIInvokeCoroutineLock, ETTask<Entity>>(new YIUIInvokeCoroutineLock { Lock = this.GetHashCode() });
+            using var coroutineLock = await EventSystem.Instance?.YIUIInvokeEntityAsync<YIUIInvokeEntity_CoroutineLock, ETTask<Entity>>(YIUISingletonHelper.YIUIMgr, new YIUIInvokeEntity_CoroutineLock { Lock = this.GetHashCode() });
 
             if (m_LastSpriteName == resName)
             {
@@ -201,7 +201,7 @@ namespace YIUIFramework
                 return;
             }
 
-            var sprite = await EventSystem.Instance?.YIUIInvokeAsync<YIUIInvokeLoadSprite, ETTask<Sprite>>(new YIUIInvokeLoadSprite { ResName = resName });
+            var sprite = await EventSystem.Instance?.YIUIInvokeEntityAsync<YIUIInvokeEntity_LoadSprite, ETTask<Sprite>>(YIUISingletonHelper.YIUIMgr, new YIUIInvokeEntity_LoadSprite { ResName = resName });
 
             if (sprite == null)
             {
@@ -214,7 +214,7 @@ namespace YIUIFramework
 
             if (gameObject == null || m_Image == null)
             {
-                EventSystem.Instance?.YIUIInvokeSync(new YIUIInvokeRelease { obj = sprite });
+                EventSystem.Instance?.YIUIInvokeEntitySync(YIUISingletonHelper.YIUIMgr, new YIUIInvokeEntity_Release { obj = sprite });
                 Logger.LogError($"{resName} 加载过程中 对象被摧毁了 gameObject == null || m_Image == null");
                 return;
             }
@@ -245,7 +245,7 @@ namespace YIUIFramework
         {
             if (m_LastSprite != null)
             {
-                EventSystem.Instance?.YIUIInvokeSync(new YIUIInvokeRelease { obj = m_LastSprite });
+                EventSystem.Instance?.YIUIInvokeEntitySync(YIUISingletonHelper.YIUIMgr, new YIUIInvokeEntity_Release { obj = m_LastSprite });
                 m_LastSprite = null;
             }
         }

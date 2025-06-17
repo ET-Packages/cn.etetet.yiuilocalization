@@ -1,11 +1,11 @@
 namespace ET.Client
 {
     [Invoke(EYIUIInvokeType.Sync)]
-    public class YIUIInvokeI2LocalizationSyncHandler : AInvokeHandler<EventView_ChangeLanguage>
+    public class YIUIInvokeI2LocalizationEntitySyncHandler : AInvokeEntityHandler<EventView_ChangeLanguage>
     {
-        public override void Handle(EventView_ChangeLanguage args)
+        public override void Handle(Entity entity, EventView_ChangeLanguage args)
         {
-            YIUILoadComponent.Inst?.DynamicEvent(args).NoContext();
+            entity?.DynamicEvent(args).NoContext();
         }
     }
 }

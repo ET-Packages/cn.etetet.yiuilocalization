@@ -198,7 +198,7 @@ namespace I2.Loc
 
             foreach (var obj in mResourcesCache.Values)
             {
-                ET.EventSystem.Instance?.YIUIInvokeSync(new YIUIInvokeRelease
+                ET.EventSystem.Instance?.YIUIInvokeEntitySync(YIUISingletonHelper.YIUIMgr, new YIUIInvokeEntity_Release
                 {
                     obj = obj
                 });

@@ -61,7 +61,7 @@ namespace I2.Loc
 
         public virtual Object LoadFromBundle(string path, Type assetType)
         {
-            var assetObject = ET.EventSystem.Instance?.YIUIInvokeSync<YIUIInvokeLoad, Object>(new YIUIInvokeLoad
+            var assetObject = ET.EventSystem.Instance?.YIUIInvokeEntitySync<YIUIInvokeEntity_Load, Object>(Entity, new YIUIInvokeEntity_Load
             {
                 LoadType = assetType,
                 ResName  = path
@@ -163,7 +163,7 @@ namespace I2.Loc
 
             var assetName = GetLanguageAssetName(language);
 
-            var loadResult = await ET.EventSystem.Instance?.YIUIInvokeAsync<YIUIInvokeLoad, ETTask<Object>>(new YIUIInvokeLoad
+            var loadResult = await ET.EventSystem.Instance?.YIUIInvokeEntityAsync<YIUIInvokeEntity_Load, ETTask<Object>>(Entity, new YIUIInvokeEntity_Load
             {
                 LoadType = typeof(TextAsset),
                 ResName  = assetName
@@ -186,7 +186,7 @@ namespace I2.Loc
             }
 
             //语言加载完毕后就可以释放资源了
-            ET.EventSystem.Instance?.YIUIInvokeSync(new YIUIInvokeRelease
+            ET.EventSystem.Instance?.YIUIInvokeEntitySync(Entity, new YIUIInvokeEntity_Release
             {
                 obj = loadResult
             });
